@@ -25,7 +25,7 @@ let userschema=new mongoose.Schema({
 let usermodel=new mongoose.model("bhava",userschema,"mydetails")
 
 app.post("/login",upload.none(),async(req,res)=>{
-  let userobj= await usermodel.find().and([{email:req.body.email},]);
+  let userobj= await usermodel.find().and([{email:req.body.email}]);
 
   if(userobj.length>0){
     if(userobj[0].password===req.body.password){
@@ -105,7 +105,23 @@ app.post("/mydetails",upload.none(), async (req, res) => {
     res.status(500).json({ status: "error", msg: "Database insert failed" });
   }
 });
-
+app.patch("/mydetailsupdate",upload.none(), async (req, res) => {
+  await usermodel.updateMany({email:req.body.email},{firstName:req.body.firstName})
+  // await usermodel.updateMnany({email:req.body.email},{lastName:req.body.lastName})
+  // await usermodel.updateMnany({email:req.body.email},{email:req.body.email})
+  // await usermodel.updateMnany({email:req.body.email},{mobileNumber:req.body.mobileNumber})
+  res.json({status:200,msg:"succesfully updated"})
+});
+app.delete("/deletereq",upload.none(),async(req,res)=>{
+  console.log(req.body)
+let delres=  await usermodel.deleteOne({email:req.body.email})
+  if(delres.deletedCount>0){
+  res.json({status:200,msg:"sucessfully deleted"})
+  }
+  else{
+    res.json({status:500,msg:"server issues is rasied"})
+  }
+})
 
 
 

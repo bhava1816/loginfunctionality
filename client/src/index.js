@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+
+
 let initial={details:[]}
 let reducer=(final=initial,reqopt)=>{
    if(reqopt.type==="datasending"){

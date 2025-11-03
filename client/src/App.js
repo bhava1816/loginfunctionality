@@ -6,6 +6,9 @@ import Signup from './components/Signup'
 import Dashboard from './components/Dashboard';
 import Helpdesk from './components/Helpdesk';
 import Contact from './components/Contact';
+import Editprofile from './components/Editprofile';
+
+
 
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
     <Route path='/dashboard' element={<Dashboard/>}></Route>
     <Route path='/helpdesk' element={<Helpdesk/>}></Route>
     <Route path='/contact' element={<Contact/>}></Route>
+    <Route path='/edit' element={<Editprofile></Editprofile>}></Route>
     <Route path='/signout' element={<Login/>}></Route>
      </Routes>
      </BrowserRouter>
