@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 
 function App() {
@@ -8,35 +8,40 @@ function App() {
   const emailref = useRef();
   const passwordref = useRef();
   const mobileNumberref = useRef();
-  let dispath=useDispatch()
+  
+ 
   const myfunction = async () => {
-    const mybody = {
-      firstName: firstNameref.current.value,
-      lastName: lastNameref.current.value,
-      email: emailref.current.value,
-      password: passwordref.current.value,
-      mobileNumber: mobileNumberref.current.value
-    };
+
+  let mybody=new FormData()
+  mybody.append("firstName", firstNameref.current.value)
+   mybody.append("lastName", lastNameref.current.value) 
+   mybody.append("email", emailref.current.value)
+   mybody.append("password", passwordref.current.value)    
+  mybody.append("mobileNumber",mobileNumberref.current.value)
+    
 
     const requestmethod = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(mybody)
+      body: mybody
     };
 
     try {
       const res = await fetch("http://localhost:2222/mydetails", requestmethod);
       const resdata = await res.json();
-      console.log("Successful data post:", resdata);
-      alert("Signup successful!");
-      dispath({type:"datasending",data:resdata})
+      
+      console.log("signup data", resdata);
+      if(resdata.status==="success"){
+         alert("Signup successful!");
+         console.log(resdata.data)
+      
+      }
+     
     } catch (err) {
       console.log(" Something went wrong:", err);
       alert("Signup failed!");
     }
-    <Link to="/"></Link>
+    
+    
   };
 
   return (

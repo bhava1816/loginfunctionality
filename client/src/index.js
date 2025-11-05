@@ -10,10 +10,17 @@ import { Provider } from 'react-redux';
 let initial={details:[]}
 let reducer=(final=initial,reqopt)=>{
    if(reqopt.type==="datasending"){
-    return {...final,details:final.details.concat(reqopt.data)}
+    return {...final,details:[reqopt.data]}
    }
-   console.log(final)
-   return final
+   else if(reqopt.type==="clearData"){
+    return {...final,details:[]}
+   }
+   else{
+    console.log(final)
+      return final
+   }
+  
+   
 }
 let store=createStore(reducer)
 const root = ReactDOM.createRoot(document.getElementById('root'));

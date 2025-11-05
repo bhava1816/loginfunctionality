@@ -1,12 +1,13 @@
-import React from 'react'
+
 import { useSelector } from 'react-redux'
 import Navigation from './Navigation'
 
 
 function Dashboard() {
+ 
   const userobj = useSelector((store) => store.details);
   console.log(userobj)
-  if (!userobj || userobj.length === 0) {
+  if (!Array.isArray(userobj) || userobj.length === 0) {
     return (
       <div>
         <Navigation />
@@ -15,7 +16,7 @@ function Dashboard() {
     );
   }
   let mydeletefunction=async()=>{
-    console.log(userobj)
+    
    let mybody=new FormData()
     mybody.append("email",userobj[0].email)
     let response= await fetch("http://localhost:2222/deletereq",{
@@ -30,6 +31,7 @@ function Dashboard() {
     <div className='nav'>
       <Navigation />
       <button type='button' onClick={()=>{mydeletefunction()}}>clickme!</button>
+     
       {userobj.map((ele, i) => (
         <div key={i} id='order'>
           <h1>{ele.firstName}</h1>

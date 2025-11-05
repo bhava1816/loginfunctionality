@@ -13,7 +13,7 @@ useEffect(()=>{
     Login()
     }
 })
-const Login = async () => {
+const Login = async () => {//its is used for auto login functinality
     const formData = new FormData();
     formData.append("token", localStorage.getItem("token"));
    
@@ -26,6 +26,8 @@ const Login = async () => {
 
       const result = await response.json();
       dispatch({type:"datasending",data:result.data})
+      emailRef.current.value=result.data.email
+      passwordRef.current.value=result.data.password
       console.log(result);
      
 
@@ -41,7 +43,7 @@ const Login = async () => {
       
     }
   };
-  const handleLogin = async () => {
+  const handleLogin = async () => {//we are creating an login credital are correct than we are creating an jwt web token
     const formData = new FormData();
     formData.append("email", emailRef.current.value.trim());
     formData.append("password", passwordRef.current.value.trim());
@@ -53,11 +55,12 @@ const Login = async () => {
       });
 
       const result = await response.json();
-      dispatch({type:"datasending",data:result.data})
+      
       console.log(result);
      
 
       if (result.status === "success") {
+        dispatch({type:"datasending",data:result.data})
         alert("Login successful");
         navigate("/dashboard");
         localStorage.setItem("token",result.data.token)
@@ -73,6 +76,7 @@ const Login = async () => {
   return (
     <div style={{ margin: "40px" }}>
       <form onSubmit={(e) => e.preventDefault()}>
+        <h1>Autologin Functionality</h1>
         <div>
           <label>Email:</label>
           <input type="email" ref={emailRef} required />
@@ -90,6 +94,7 @@ const Login = async () => {
           to="/signup"
           style={({ isActive }) =>
             isActive ? { color: "blue", textDecoration: "none" } : undefined
+            
           }
         >
           Signup
