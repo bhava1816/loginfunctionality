@@ -26,7 +26,7 @@ function App() {
     };
 
     try {
-      const res = await fetch("http://localhost:2222/mydetails", requestmethod);
+      const res = await fetch("/mydetails", requestmethod);
       const resdata = await res.json();
       
       console.log("signup data", resdata);

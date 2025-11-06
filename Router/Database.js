@@ -1,7 +1,9 @@
 let mongoose=require("mongoose")
+require("dotenv").config();
+
 let myfunction=async()=>{
     try{
-      await mongoose.connect("mongodb+srv://bhavanarayanachukka:narayana123@cluster0.2ybtcaq.mongodb.net/MERN2506?retryWrites=true&w=majority&appName=Cluster0")
+      await mongoose.connect(process.env.MONGODBCONNECTION)
        console.log("connected to database successfully")
       
     }

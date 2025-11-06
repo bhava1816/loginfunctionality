@@ -19,7 +19,7 @@ const Login = async () => {//its is used for auto login functinality
    
 
     try {
-      const response = await fetch("http://localhost:2222/loginvalidate", {
+      const response = await fetch("/loginvalidate", {
         method: "POST",
         body: formData,
       });
@@ -49,7 +49,7 @@ const Login = async () => {//its is used for auto login functinality
     formData.append("password", passwordRef.current.value.trim());
 
     try {
-      const response = await fetch("http://localhost:2222/login", {
+      const response = await fetch("/login", {
         method: "POST",
         body: formData,
       });

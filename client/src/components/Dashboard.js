@@ -19,7 +19,7 @@ function Dashboard() {
     
    let mybody=new FormData()
     mybody.append("email",userobj[0].email)
-    let response= await fetch("http://localhost:2222/deletereq",{
+    let response= await fetch("/deletereq",{
       method:"DELETE",
       body:mybody
     })

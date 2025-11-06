@@ -39,7 +39,7 @@ useEffect(()=>{
     };
 
     try {
-      const res = await fetch("http://localhost:2222/mydetailsupdate", requestmethod);
+      const res = await fetch("/mydetailsupdate", requestmethod);
       const resdata = await res.json();
       console.log(resdata)
       console.log("Successful data post:", resdata);
