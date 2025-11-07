@@ -6,17 +6,11 @@
    
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bhava1816/loginfunctionality.git"
-  },
+ 
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bhava1816/loginfunctionality/issues"
-  },
-  "homepage": "https://github.com/bhava1816/loginfunctionality#readme",
+
   "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
