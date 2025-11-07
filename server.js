@@ -24,7 +24,7 @@ app.use("/", mainfunction);
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 // 4. Wildcard route for React (Express 5 compatible)
-app.get("/*", (req, res) => {
+app.get((req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
