@@ -12,7 +12,7 @@ const usermodel=require("../Router/Module")
 routers.post("/login",upload.none(),async(req,res)=>{//from this we creating an webtoken the token was creates successfully
   let userobj= await usermodel.find().and([{email:req.body.email}]);
   console.log(userobj)
-  let matched=await  bcrypt.compare(req.body.password,userobj[0].password)//here we can compare the bcrypt password with the real password
+  let matched=  bcrypt.compare(req.body.password,userobj[0].password)//here we can compare the bcrypt password with the real password
   if(userobj.length>0){
     if(matched){
       let token=jwt.sign({email:req.body.email,password:req.body.password},"shhh")//here token was genrated
@@ -69,7 +69,7 @@ routers.post("/loginvalidate",upload.none(),async(req,res)=>{//in this we are dy
 
 routers.post("/mydetails",upload.none(), async (req, res) => {//signup and instering data to  database 
   let passordsecurity=req.body.password
-  let hassedpassword= bcrypt.hash(passordsecurity,10)// we are creating security for password that stored in tha database
+  let hassedpassword=await bcrypt.hash(passordsecurity,10)// we are creating security for password that stored in tha database
   try {
     let userobject = new usermodel({
       firstName: req.body.firstName,

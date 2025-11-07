@@ -21,7 +21,7 @@ useEffect(()=>{
   emailref.current.value=userobj[0].email;
   passwordref.current.value=userobj[0].password;
   mobileNumberref.current.value=userobj[0].mobileNumber;
-},[])
+})
 
 
   const myfunction = async () => {

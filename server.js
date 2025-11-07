@@ -20,7 +20,7 @@ databaseconnection();
 // 2. API routes FIRST
 app.use("/", mainfunction);
 
-// 3. Serve React build folder
+3.// Serve React build folder
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 // 4. Wildcard route for React (Express 5 compatible)
