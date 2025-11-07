@@ -9,8 +9,13 @@ let app=express();
 app.use(cors())
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+let path = require("path");
+app.use(express.static(path.join("_dirname","./client/build")))
 
+app.get("*",(req,res)=>{
+    res.sendFile(path.join("_dirname","./client/build/index.html"))
+})
 
 databaseconnection()
 app.use("/",mainfunction)
