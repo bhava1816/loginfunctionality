@@ -10,13 +10,14 @@ app.use(cors())
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
-let path = require("path");
-app.use(express.static(path.join("_dirname","./client/build")))
+const path = require("path");
 
-app.get("*",(req,res)=>{
-    res.sendFile(path.join("_dirname","./client/build/index.html"))
-})
+app.use(express.static(path.join(__dirname, "./client/build")));
 
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 databaseconnection()
 app.use("/",mainfunction)
 app.listen(process.env.PORT,()=>{
